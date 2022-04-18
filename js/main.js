@@ -45,72 +45,42 @@ let buttons = document.querySelectorAll('.btn');
 
 //  Turan
 
-let tower = document.querySelector(".tower")
-tower.addEventListener("click", () => {
-  chessDiv.forEach((elem) => {
-        if (elem.className.includes("Y=1") && elem.className.includes("X=1")) {
-        }
-    })
-})
 
-let con = 1
-chessDiv.forEach((item) => {
-        item.addEventListener('click', () => {
-            let one = item.className.split(' ')
-            if ( con == 1) {
-                search(one[1], one[2])
-                con++
+let tower = document.querySelector('.tower');
+tower.addEventListener('click', () => {
+  queen.style.backgroundColor = 'white'
+  bishop.style.backgroundColor = 'white'
+  knight.style.backgroundColor = 'white'
+  king.style.backgroundColor = 'white'
+  pawn.style.backgroundColor = 'white'
+  tower.style.backgroundColor = 'orange'
+  chessDiv.forEach((item) => {
+    cheesboard.forEach((elem, i) => {
+      item.addEventListener('mouseover', () => {
+        if (item.id == i) {
+          chessDiv.forEach((el, id) => {
+            el.classList.remove('green')
+            if (el.className.includes(`Y=${elem.y}`)) {
+              el.classList.add('green')
             }
+            if (el.className.includes(`X=${elem.x}`)) {
+              el.classList.add('green')
+            }
+          })
 
-        })
+        }
+      })
+      item.addEventListener("mouseout", () => {
+        if (item.id == i) {
+          chessDiv.forEach((el, id) => {
+            el.classList.remove('green')
+          })
+
+        }
+      })
     })
-function search(a, b) {
-    let con = 1
-    chessDiv.forEach((item) => {
-        cheesboard.forEach((elem, i) => {
-            item.addEventListener('click', () => {
-                if (item.className.includes(`${a}`)) {
-                    if (item.id == i) {
-                      chessDiv.forEach((el, id) => {
-                            el.classList.remove('kingimg')
-                            el.classList.remove('green')
-                            if (el.className.includes(`y_${elem.y}`)) {
-                                el.classList.add('green')
-                            }
-                            if (el.className.includes(`x_${elem.x}`)) {
-                                el.classList.add('green')
-                            }
-                            if (!(item.className.includes("Y=4") && item.className.includes("X=5"))) {
-                                el.style.backgroundImage = `url()`
-                            }
-                        })
-                        item.classList.add('kingimg')
-                    }
-                    con = 1
-                }
-                if (item.className.includes(`${b}`)) {
-                    if (item.id == i) {
-                      chessDiv.forEach((el, id) => {
-                            el.classList.remove('kingimg')
-                            el.classList.remove('green')
-                            if (el.className.includes(`Y=${elem.y}`)) {
-                                el.classList.add('green')
-                            }
-                            if (el.className.includes(`X=${elem.x}`)) {
-                                el.classList.add('green')
-                            }
-                            if (!(item.className.includes("Y=4") && item.className.includes("X=5"))) {
-                                el.style.backgroundImage = `url()`
-                            }
-                        })
-                        item.classList.add('kingimg')
-                    }
-                    con = 1
-                }
-            })
-        })
-    })
-}
+  })
+})
 
 
 
